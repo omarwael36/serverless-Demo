@@ -1,0 +1,42 @@
+service: RestApi
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  # other provider configurations...
+
+functions:
+  createOrder:
+    handler: handlers/createOrder.handler
+    events:
+      - httpApi:
+          path: /api/orders
+          method: post
+
+  getOrder:
+    handler: handlers/getOrder.handler
+    events:
+      - httpApi:
+          path: /api/orders/{id}
+          method: get
+
+  updateOrder:
+    handler: handlers/updateOrder.handler
+    events:
+      - httpApi:
+          path: /api/orders/{id}
+          method: put
+
+  deleteOrder:
+    handler: handlers/deleteOrder.handler
+    events:
+      - httpApi:
+          path: /api/orders/{id}
+          method: delete
+
+  getAllOrders:
+    handler: handlers/getAllOrders.handler
+    events:
+      - httpApi:
+          path: /api/orders
+          method: get
